@@ -1,6 +1,6 @@
 ## R lesson
 
-**Author:** Kazushige
+**Author:** Kazushige, Susana L. Orozco
 
 **Dependencies:** dplyr, ggplot2
 
