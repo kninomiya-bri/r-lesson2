@@ -1,0 +1,161 @@
+---
+title: "Gapminder Analysis"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+## Gather data
+#download file,need to specify url and destination of file
+```{r}
+download.file(url="https://raw.githubusercontent.com/swcarpentry/r-novice-gapminder/gh-pages/_episodes_rmd/data/gapminder_data.csv", destfile="data/gapminder-data.csv")
+```
+```{r}
+read.csv("data/gapminder-data.csv")
+```
+
+```{r}
+download.file(url="https://raw.githubusercontent.com/swcarpentry/r-novice-gapminder/gh-pages/_episodes_rmd/data/gapminder_data.csv", destfile="data/gapminder_data.csv")
+gapminder <- read.csv("data/gapminder_data.csv")
+```
+
+
+```{r}
+getwd()
+```
+
+```{r}
+head(gapminder)
+
+```
+
+## Plotting some data
+#ggplot; layers of data plot
+illustrator, photoshop
+photomanupulation programs allow us to 
+
+### some questions; how does life expectancy change with GDP per capita?
+
+```{r}
+library(ggplot2)
+
+
+```
+### how does life expectancy change with GDP per capita?
+
+#mapping; static function
+```{r}
+ggplot(data = gapminder, mapping = aes(x=gdpPERcap, y=lifeExp))
+
+```
+
+
+```{r}
+ggplot(data = gapminder, mapping = aes(x=gdpPercap, y=lifeExp)) + geom_point()
+
+```
+
+#how does life expectancy change per year?
+
+```{r}
+ggplot(data = gapminder, mapping = aes(x=year, y=lifeExp)) + geom_line()
+
+```
+
+```{r}
+ggplot(data = gapminder, mapping = aes(x=year, y=lifeExp, by=country)) + 
+	geom_line()
+	
+```
+
+```{r}
+ggplot(data = gapminder, mapping = aes(x=year, y=lifeExp, by=country, color=continent)) + 
+	geom_line()
+	
+```
+
+```{r}
+ggplot(data = gapminder, mapping = aes(x=year, y=lifeExp, by=country, color=continent)) + 
+	geom_line() +
+	scale_color_manual(values = c("purple", "orange", "grey", "grey", "grey"))
+	
+```
+
+```{r}
+ggplot(data = gapminder, mapping = aes(x=gdpPercap, y=lifeExp)) + 
+	geom_point() +
+ 	scale_x_log10()+
+  
+ geom_smooth(method="lm", size=1.5)
+```
+```{r}
+ggplot(data = gapminder, mapping = aes(x=gdpPercap, y=lifeExp)) + 
+	geom_point(size=1, alpha=.1) +
+ 	scale_x_log10()+
+  
+ geom_smooth(method="lm", size=1.5)
+```
+
+```{r}
+ggplot(data = gapminder, mapping = aes(x=year, y=lifeExp, by=country)) + 
+	geom_line(mapping = aes (color = gapPercap)) + 
+  geom_point()
+	
+```
+
+### How does life expectancy change per year in the americas?
+
+```{R}
+ gapminder[gapminder$continent == "Americas",]
+```
+```{R}
+ america <- gapminder[gapminder$continent == "Americas",]
+ ggplot(data = america, mapping = aes(x = year, y= lifeExp)) +
+   geom_line() +
+   facet_wrap(~country)
+
+
+```
+
+```{R}
+ america <- gapminder[gapminder$continent == "Americas",]
+ ggplot(data = america, mapping = aes(x = year, y= lifeExp)) +
+   geom_line() +
+   facet_wrap(~country)+
+   theme(axis.text.x = element_text(angle=45)) #x axis angle was changed
+
+```
+
+```{r}
+america <- gapminder[gapminder$continent == "Americas",]
+ ggplot(data = america, mapping = aes(x = year, y= lifeExp, color = country)) +
+   geom_line()
+```
+# how to save
+
+```{r}
+ america <- gapminder[gapminder$continent == "Americas",]
+    lifeExp_plot <- ggplot(data = america, mapping = aes(x = year, y= lifeExp)) +
+    geom_line()+
+    facet_wrap(~country)+
+   theme(axis.text.x = element_text(angle=45)) 
+
+    lifeExp_plot
+    
+```
+
+```{r}
+ggsave(plot=lifeExp_plot, filename="lifeExp.png")
+```
+
+
+```{r}
+ggplot(data = gapminder, mapping = aes(x = year, y= lifeExp, color =  continent)) +
+    geom_line(aes(by = country, alpha=0.2))+
+    stat_smooth(aes(by = continent), size=2)
+```
+    

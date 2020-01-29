@@ -1,0 +1,134 @@
+---
+title: "Analysis of Experiment"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will ebe generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+knitr::opts_chunk$set (echo = TRUE)
+```
+
+```{r}
+
+read.csv(file = "data/experiment.csv")
+```
+```{r}
+1+2
+read.csv(file = "data/experiment.csv")
+```
+
+
+```{r}
+experiment <- read.csv(file = "data/experiment.csv")
+```
+
+```{r}
+experiment$protein_name
+```
+
+```{r}
+experiment$protein_name
+experiment$intensity
+```
+
+```{r}
+experiment$protein_name
+experiment$intensity+1
+```
+
+
+```{r}
+experiment$protein_name
+experiment$intensity+1
+pasete("Protein name", experiment$protein_name)
+```
+
+
+```{r}
+experiment$protein_name
+experiment$intensity+1
+paste("Protein name:", experiment$protein_name)
+```
+
+`type 
+
+```{r}
+experiment2 <- experiment
+```
+
+```{r}ex
+experiment2 <- experiment
+experiment2$protein_names <- paste("Protein Name:", experiment2$protein_names)
+```
+
+```{r}
+experiment$intensity +experiment$intensity
+experiment$protein_name + experiment$intensity
+```
+
+```{r}
+list(3.14, TRUE, "banana")
+```
+
+
+```{r}
+list (3.14, TRUE, "banana")
+list_example <- list (title = "numbers", numbers =c(1,2,3), data_exists=TRUE)
+```
+
+```{r}
+fruits <- c("apple", "apple", "banana", "grape", "grape")
+```
+
+```{r}
+fruits <- c("apple", "apple", "banana", "grape", "grape")
+factor_fruit <- factor(fruits)
+```
+
+
+```{r}
+mydata <- c("case", "control", "case", "control")
+factor_mydata <- factor(mydata)
+```
+
+```{r}
+mydata <- c("case", "control", "case", "control")
+factor_mydata <- factor(mydata, levels = c("control", "case"f))
+```
+
+#add new column
+str(experiment$intesity)
+```{r}
+replicate <- c(1,2,1)
+cbind(experiment, replicate)
+```
+
+#add row
+
+```{r}
+levels(experiment$protein_name) <- c(levels(experiment$protein_name), "FOXO3")
+new_protein <- list(protein_name='FOXO3',
+                    intensity=1.5,
+                    in_membrane = 0,
+                    replicate =2
+                    )
+experiment <- rbind(experiment, new_protein)
+
+```
+
+
+```{r}
+experiment[4,]
+```
+```{r}
+experiment[,]
+```
