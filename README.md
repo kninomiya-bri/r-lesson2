@@ -1,5 +1,2 @@
-## R lesson
-
-This repository contains analysis of life expectancy vs GDP.
-
-
+THis repository contains analyses of life expectancy vs GDP.
+ANthony is 
